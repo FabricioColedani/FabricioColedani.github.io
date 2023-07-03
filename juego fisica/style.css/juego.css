@@ -1,0 +1,52 @@
+#player {
+    width: 80px;
+    height: 80px;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    background-image: url('player.png');
+    background-size: cover;
+}
+
+.object {
+    width: 40px;
+    height: 40px;
+    background-image: url('object.png');
+    background-size: cover;
+    position: absolute;
+}
+
+#score {
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+#game-over {
+    display: none;
+    text-align: center;
+}
+
+#game-over p {
+    font-size: 18px;
+    color: #333;
+}
+
+#game-over button {
+    margin-top: 10px;
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #4CAF50;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+}
+
+#background-pattern {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    background-image: url('background-pattern.png');
+    background-repeat: repeat;
+    z-index: -1;
+}

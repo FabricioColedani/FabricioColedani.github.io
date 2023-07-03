@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Juego de Física - Magnitudes de Longitud y Objetos Recogidos</title>
+    <style>
+        body {
+            background-color: #f2f2f2;
+            font-family: Arial, sans-serif;
+        }
+
+        h1 {
+            text-align: center;
+            margin-top: 20px;
+            color: #333;
+        }
+
+        #game-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            margin-top: 50px;
+        }
+
+        #canvas {
+            position: relative;
+            width: 800px;
+            height: 400px;
+            border: 2px solid #333;
+            background-color: #cceeff;
+            margin-bottom: 20px;
+            overflow: hidden;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+        }
+
+        #player {
+            width: 80px;
+            height: 80px;
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            background-image: url('player.png');
+            background-size: cover;
+        }
+
+        .object {
+            width: 40px;
+            height: 40px;
+            background-image: url('object.png');
+            background-size: cover;
+            position: absolute;
+        }
+
+        #score {
+            font-size: 24px;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        #game-over {
+            display: none;
+            text-align: center;
+        }
+
+        #game-over p {
+            font-size: 18px;
+            color: #333;
+        }
+
+        #game-over button {
+            margin-top: 10px;
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #4CAF50;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+        }
+
+        #background-pattern {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            background-image: url('background-pattern.png');
+            background-repeat: repeat;
+            z-index: -1;
+        }
+
+        .unit {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 5px;
+            color: #333;
+            font-weight: bold;
+            font-size: 18px;
+        }
+
+        .unit span {
+            margin-left: 5px;
+        }
+
+        #game-info {
+            background-color: #fff;
+            padding: 10px;
+            border-radius: 5px;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+        }
+
+        #game-info ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        #game-info li {
+            margin-bottom: 5px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Juego de Física - Magnitudes de Longitud y Objetos Recogidos</h1>
+    <div id="game-container">
+        <div id="canvas">
+            <div id="player"></div>
+            <div id="background-pattern"></div>
+        </div>
+        <div id="game-info">
+            <p>Distancia recorrida:</p>
+            <ul>
+                <li class="unit"><span id="meters">0</span> metros</li>
+                <li class="unit"><span id="kilometers">0</span> kilómetros</li>
+                <li class="unit"><span id="hectometers">0</span> hectómetros</li>
+                <li class="unit"><span id="decameters">0</span> decámetros</li>
+                <li class="unit"><span id="decimeters">0</span> decímetros</li>
+                <li class="unit"><span id="centimeters">0</span> centímetros</li>
+                <li class="unit"><span id="millimeters">0</span> milímetros</li>
+            </ul>
+            <p>Objetos recogidos: <span id="score">0</span></p>
+        </div>
+        <div id="game-over">
+            <p>¡Felicidades! Has recolectado todos los objetos.</p>
+            <button id="restart-button">Reiniciar Juego</button>
+            <button id="exit-button">Salir</button>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            var character = document.getElementById("player");
+            var scoreElement = document.getElementById("score");
+            var canvas = document.getElementById("canvas");
+            var restartButton = document.getElementById("restart-button");
+            var exitButton = document.getElementById("exit-button");
+            var gameOverScreen = document.getElementById("game-over");
+
+            var positionX = 0;
+            var positionY = 0;
+            var distance = {
+                meters: 0,
+                kilometers: 0,
+                hectometers: 0,
+                decameters: 0,
+                decimeters: 0,
+                centimeters: 0,
+                millimeters: 0
+            };
+            var score = 0;
+            var objectLimit = 10;
+            var objectsCollected = 0;
+
+            function updateCharacterPosition() {
+                document.addEventListener("keydown", function(event) {
+                    var step = 10; // Longitud del paso en centímetros (10 centímetros = 100 píxeles)
+                    var canvasWidth = canvas.clientWidth;
+                    var canvasHeight = canvas.clientHeight;
+                    
+                    switch (event.key) {
+                        case "ArrowUp":
+                            positionY -= step;
+                            positionY = Math.max(positionY, 0); // Limitar el movimiento hacia arriba
+                            break;
+                        case "ArrowDown":
+                            positionY += step;
+                            positionY = Math.min(positionY, canvasHeight - character.offsetHeight); // Limitar el movimiento hacia abajo
+                            break;
+                        case "ArrowLeft":
+                            positionX -= step;
+                            positionX = Math.max(positionX, 0); // Limitar el movimiento hacia la izquierda
+                            break;
+                        case "ArrowRight":
+                            positionX += step;
+                            positionX = Math.min(positionX, canvasWidth - character.offsetWidth); // Limitar el movimiento hacia la derecha
+                            break;
+                    }
+
+                    updateDistance(); // Actualizar la distancia recorrida
+                    checkCollision(); // Comprobar colisión con los objetos
+                    character.style.left = positionX + "px";
+                    character.style.top = positionY + "px";
+                });
+            }
+
+            function updateDistance() {
+                var previousX = character.offsetLeft;
+                var previousY = character.offsetTop;
+                var dx = positionX - previousX;
+                var dy = positionY - previousY;
+
+                var distanceInCentimeters = Math.sqrt(dx * dx + dy * dy);
+                distance.meters += centimetersToMeters(distanceInCentimeters);
+                distance.kilometers = metersToKilometers(distance.meters);
+                distance.hectometers = metersToHectometers(distance.meters);
+                distance.decameters = metersToDecameters(distance.meters);
+                distance.decimeters = metersToDecimeters(distance.meters);
+                distance.centimeters = metersToCentimeters(distance.meters);
+                distance.millimeters = metersToMillimeters(distance.meters);
+
+                document.getElementById("meters").textContent = distance.meters.toFixed(2);
+                document.getElementById("kilometers").textContent = distance.kilometers.toFixed(2);
+                document.getElementById("hectometers").textContent = distance.hectometers.toFixed(2);
+                document.getElementById("decameters").textContent = distance.decameters.toFixed(2);
+                document.getElementById("decimeters").textContent = distance.decimeters.toFixed(2);
+                document.getElementById("centimeters").textContent = distance.centimeters.toFixed(2);
+                document.getElementById("millimeters").textContent = distance.millimeters.toFixed(2);
+            }
+
+            function centimetersToMeters(centimeters) {
+                return centimeters / 100;
+            }
+
+            function metersToKilometers(meters) {
+                return meters / 1000;
+            }
+
+            function metersToHectometers(meters) {
+                return meters / 100;
+            }
+
+            function metersToDecameters(meters) {
+                return meters / 10;
+            }
+
+            function metersToDecimeters(meters) {
+                return meters * 10;
+            }
+
+            function metersToCentimeters(meters) {
+                return meters * 100;
+            }
+
+            function metersToMillimeters(meters) {
+                return meters * 1000;
+            }
+
+            function createObjects() {
+                var objectColors = ["red", "blue", "green", "yellow", "orange"];
+                var objectSize = 40; // Tamaño del objeto en píxeles
+
+                for (var i = 0; i < objectLimit; i++) {
+                    var object = document.createElement("div");
+                    object.classList.add("object");
+                    object.style.backgroundColor = objectColors[i % objectColors.length];
+                    object.style.left = Math.floor(Math.random() * (canvas.clientWidth - objectSize)) + "px";
+                    object.style.top = Math.floor(Math.random() * (canvas.clientHeight - objectSize)) + "px";
+                    canvas.appendChild(object);
+                }
+            }
+
+            function checkCollision() {
+                var objects = document.getElementsByClassName("object");
+
+                for (var i = 0; i < objects.length; i++) {
+                    var object = objects[i];
+
+                    if (isColliding(character, object)) {
+                        object.remove();
+                        score++;
+                        scoreElement.textContent = score;
+                        objectsCollected++;
+
+                        if (objectsCollected === objectLimit) {
+                            endGame();
+                        }
+                    }
+                }
+            }
+
+            function isColliding(element1, element2) {
+                var rect1 = element1.getBoundingClientRect();
+                var rect2 = element2.getBoundingClientRect();
+
+                return !(rect1.right < rect2.left ||
+                    rect1.left > rect2.right ||
+                    rect1.bottom < rect2.top ||
+                    rect1.top > rect2.bottom);
+            }
+
+            function endGame() {
+                gameOverScreen.style.display = "block";
+            }
+
+            function restartGame() {
+                positionX = 0;
+                positionY = 0;
+                distance.meters = 0;
+                score = 0;
+                objectsCollected = 0;
+                scoreElement.textContent = score;
+
+                var objects = document.getElementsByClassName("object");
+                while (objects.length > 0) {
+                    objects[0].remove();
+                }
+
+                gameOverScreen.style.display = "none";
+                createObjects();
+            }
+
+            function exitGame() {
+                // Puedes agregar aquí cualquier otra lógica necesaria antes de salir del juego
+                window.close();
+            }
+
+            updateCharacterPosition();
+            createObjects();
+
+            restartButton.addEventListener("click", restartGame);
+            exitButton.addEventListener("click", exitGame);
+        });
+    </script>
+</body>
+</html>

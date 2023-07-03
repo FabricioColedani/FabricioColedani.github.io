@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Juego de Conversiones</title>
+    <style>
+        body {
+            background-color: #f2f2f2;
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 500px;
+            margin: 50px auto;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            text-align: center;
+        }
+
+        h1 {
+            color: #333;
+            font-size: 28px;
+            margin-bottom: 30px;
+        }
+
+        label {
+            display: block;
+            font-size: 16px;
+            color: #555;
+            margin-bottom: 10px;
+        }
+
+        input[type="text"],
+        select {
+            width: 100%;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            margin-bottom: 20px;
+            font-size: 16px;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        #resultado {
+            margin-top: 20px;
+            font-size: 18px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        /* Estilos adicionales para colores y tipos de magnitudes */
+        .temperatura {
+            background-color: #ffc107;
+        }
+
+        .longitud {
+            background-color: #3f51b5;
+        }
+
+        .peso {
+            background-color: #f44336;
+        }
+
+        .tiempo {
+            background-color: #009688;
+        }
+
+        .opcion {
+            color: white;
+            font-weight: bold;
+            padding: 5px 10px;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Juego de Conversiones de Magnitudes</h1>
+        <label for="valor">Valor:</label>
+        <input type="text" id="valor">
+        <br>
+        <label for="unidad_origen">Unidad de origen:</label>
+        <select id="unidad_origen">
+            <option value="C" class="temperatura">Celsius (°C)</option>
+            <option value="F" class="temperatura">Fahrenheit (°F)</option>
+            <option value="K" class="temperatura">Kelvin (K)</option>
+            <option value="m" class="longitud">Metro (m)</option>
+            <option value="cm" class="longitud">Centímetro (cm)</option>
+            <option value="km" class="longitud">Kilómetro (km)</option>
+            <option value="g" class="peso">Gramo (g)</option>
+            <option value="kg" class="peso">Kilogramo (kg)</option>
+            <option value="lb" class="peso">Libra (lb)</option>
+            <option value="s" class="tiempo">Segundo (s)</option>
+            <option value="min" class="tiempo">Minuto (min)</option>
+            <option value="h" class="tiempo">Hora (h)</option>
+        </select>
+        <br>
+        <label for="unidad_destino">Unidad de destino:</label>
+        <select id="unidad_destino">
+            <option value="C" class="temperatura">Celsius (°C)</option>
+            <option value="F" class="temperatura">Fahrenheit (°F)</option>
+            <option value="K" class="temperatura">Kelvin (K)</option>
+            <option value="m" class="longitud">Metro (m)</option>
+            <option value="cm" class="longitud">Centímetro (cm)</option>
+            <option value="km" class="longitud">Kilómetro (km)</option>
+            <option value="g" class="peso">Gramo (g)</option>
+            <option value="kg" class="peso">Kilogramo (kg)</option>
+            <option value="lb" class="peso">Libra (lb)</option>
+            <option value="s" class="tiempo">Segundo (s)</option>
+            <option value="min" class="tiempo">Minuto (min)</option>
+            <option value="h" class="tiempo">Hora (h)</option>
+        </select>
+        <br>
+        <button onclick="convertir()">Convertir</button>
+        <div id="resultado"></div>
+    </div>
+
+    <script>
+        function convertir() {
+            var valor = parseFloat(document.getElementById("valor").value);
+            var unidad_origen = document.getElementById("unidad_origen").value;
+            var unidad_destino = document.getElementById("unidad_destino").value;
+
+            var resultado = convertirMagnitud(valor, unidad_origen, unidad_destino);
+
+            document.getElementById("resultado").innerHTML = valor + unidad_origen + " equivale a " + resultado + unidad_destino;
+        }
+
+        function convertirMagnitud(valor, unidad_origen, unidad_destino) {
+            if (unidad_origen === "C" && unidad_destino === "F") {
+                return (valor * 9 / 5) + 32;
+            } else if (unidad_origen === "F" && unidad_destino === "C") {
+                return (valor - 32) * 5 / 9;
+            } else if (unidad_origen === "C" && unidad_destino === "K") {
+                return valor + 273.15;
+            } else if (unidad_origen === "K" && unidad_destino === "C") {
+                return valor - 273.15;
+            } else if (unidad_origen === "F" && unidad_destino === "K") {
+                var celsius = (valor - 32) * 5 / 9;
+                return celsius + 273.15;
+            } else if (unidad_origen === "K" && unidad_destino === "F") {
+                var celsius = (valor - 273.15) * 9 / 5;
+                return celsius + 32;
+            } else if (unidad_origen === "m" && unidad_destino === "cm") {
+                return valor * 100;
+            } else if (unidad_origen === "cm" && unidad_destino === "m") {
+                return valor / 100;
+            } else if (unidad_origen === "m" && unidad_destino === "km") {
+                return valor / 1000;
+            } else if (unidad_origen === "km" && unidad_destino === "m") {
+                return valor * 1000;
+            } else if (unidad_origen === "g" && unidad_destino === "kg") {
+                return valor / 1000;
+            } else if (unidad_origen === "kg" && unidad_destino === "g") {
+                return valor * 1000;
+            } else if (unidad_origen === "lb" && unidad_destino === "kg") {
+                return valor * 0.453592;
+            } else if (unidad_origen === "kg" && unidad_destino === "lb") {
+                return valor / 0.453592;
+            } else if (unidad_origen === "s" && unidad_destino === "min") {
+                return valor / 60;
+            } else if (unidad_origen === "min" && unidad_destino === "s") {
+                return valor * 60;
+            } else if (unidad_origen === "s" && unidad_destino === "h") {
+                return valor / 3600;
+            } else if (unidad_origen === "h" && unidad_destino === "s") {
+                return valor * 3600;
+            } else {
+                return valor;  // Las unidades son las mismas, no se realiza ninguna conversión
+            }
+        }
+    </script>
+</body>
+</html>
+
+
+
+
+
+
+
+
