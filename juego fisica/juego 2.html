@@ -1,200 +1,194 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="UTF-8">
-    <title>Juego de Conversiones</title>
-    <style>
-        body {
-            background-color: #f2f2f2;
-            font-family: 'Arial', sans-serif;
-            margin: 0;
-            padding: 0;
-        }
+  <title>Conversor de Magnitudes</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin: 50px;
+    }
 
-        .container {
-            max-width: 500px;
-            margin: 50px auto;
-            background-color: #fff;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            padding: 30px;
-            text-align: center;
-        }
+    h1 {
+      margin-bottom: 30px;
+    }
 
-        h1 {
-            color: #333;
-            font-size: 28px;
-            margin-bottom: 30px;
-        }
+    .converter-container {
+      max-width: 400px;
+      margin: 0 auto;
+      padding: 20px;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      background-color: #f8f8f8;
+    }
 
-        label {
-            display: block;
-            font-size: 16px;
-            color: #555;
-            margin-bottom: 10px;
-        }
+    .input-container {
+      margin-bottom: 20px;
+    }
 
-        input[type="text"],
-        select {
-            width: 100%;
-            padding: 10px;
-            border-radius: 5px;
-            border: 1px solid #ccc;
-            margin-bottom: 20px;
-            font-size: 16px;
-        }
+    label {
+      display: block;
+      margin-bottom: 5px;
+    }
 
-        button {
-            padding: 10px 20px;
-            background-color: #4CAF50;
-            color: white;
-            border: none;
-            cursor: pointer;
-            font-size: 16px;
-            border-radius: 5px;
-            transition: background-color 0.3s ease;
-        }
+    select, input {
+      width: 100%;
+      padding: 10px;
+      font-size: 16px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
 
-        button:hover {
-            background-color: #45a049;
-        }
+    #result {
+      margin-top: 20px;
+      font-size: 20px;
+      font-weight: bold;
+    }
 
-        #resultado {
-            margin-top: 20px;
-            font-size: 18px;
-            font-weight: bold;
-            color: #333;
-        }
+    button {
+      padding: 10px 20px;
+      background-color: #007BFF;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
 
-        /* Estilos adicionales para colores y tipos de magnitudes */
-        .temperatura {
-            background-color: #ffc107;
-        }
-
-        .longitud {
-            background-color: #3f51b5;
-        }
-
-        .peso {
-            background-color: #f44336;
-        }
-
-        .tiempo {
-            background-color: #009688;
-        }
-
-        .opcion {
-            color: white;
-            font-weight: bold;
-            padding: 5px 10px;
-            border-radius: 5px;
-        }
-    </style>
+    button:hover {
+      background-color: #0056b3;
+    }
+  </style>
 </head>
 <body>
-    <div class="container">
-        <h1>Juego de Conversiones de Magnitudes</h1>
-        <label for="valor">Valor:</label>
-        <input type="text" id="valor">
-        <br>
-        <label for="unidad_origen">Unidad de origen:</label>
-        <select id="unidad_origen">
-            <option value="C" class="temperatura">Celsius (°C)</option>
-            <option value="F" class="temperatura">Fahrenheit (°F)</option>
-            <option value="K" class="temperatura">Kelvin (K)</option>
-            <option value="m" class="longitud">Metro (m)</option>
-            <option value="cm" class="longitud">Centímetro (cm)</option>
-            <option value="km" class="longitud">Kilómetro (km)</option>
-            <option value="g" class="peso">Gramo (g)</option>
-            <option value="kg" class="peso">Kilogramo (kg)</option>
-            <option value="lb" class="peso">Libra (lb)</option>
-            <option value="s" class="tiempo">Segundo (s)</option>
-            <option value="min" class="tiempo">Minuto (min)</option>
-            <option value="h" class="tiempo">Hora (h)</option>
-        </select>
-        <br>
-        <label for="unidad_destino">Unidad de destino:</label>
-        <select id="unidad_destino">
-            <option value="C" class="temperatura">Celsius (°C)</option>
-            <option value="F" class="temperatura">Fahrenheit (°F)</option>
-            <option value="K" class="temperatura">Kelvin (K)</option>
-            <option value="m" class="longitud">Metro (m)</option>
-            <option value="cm" class="longitud">Centímetro (cm)</option>
-            <option value="km" class="longitud">Kilómetro (km)</option>
-            <option value="g" class="peso">Gramo (g)</option>
-            <option value="kg" class="peso">Kilogramo (kg)</option>
-            <option value="lb" class="peso">Libra (lb)</option>
-            <option value="s" class="tiempo">Segundo (s)</option>
-            <option value="min" class="tiempo">Minuto (min)</option>
-            <option value="h" class="tiempo">Hora (h)</option>
-        </select>
-        <br>
-        <button onclick="convertir()">Convertir</button>
-        <div id="resultado"></div>
+  <h1>Conversor de Magnitudes</h1>
+  <div class="converter-container">
+    <div class="input-container">
+      <label>Valor a convertir:</label>
+      <input type="number" id="value">
     </div>
 
-    <script>
-        function convertir() {
-            var valor = parseFloat(document.getElementById("valor").value);
-            var unidad_origen = document.getElementById("unidad_origen").value;
-            var unidad_destino = document.getElementById("unidad_destino").value;
+    <div class="input-container">
+      <label>Magnitud de origen:</label>
+      <select id="fromMagnitude">
+        <option value="length">Longitud</option>
+        <option value="time">Tiempo</option>
+        <option value="mass">Masa</option>
+      </select>
+    </div>
 
-            var resultado = convertirMagnitud(valor, unidad_origen, unidad_destino);
+    <div class="input-container">
+      <label>Unidad de origen:</label>
+      <select id="fromUnit"></select>
+    </div>
 
-            document.getElementById("resultado").innerHTML = valor + unidad_origen + " equivale a " + resultado + unidad_destino;
-        }
+    <div class="input-container">
+      <label>Magnitud de destino:</label>
+      <select id="toMagnitude">
+        <option value="length">Longitud</option>
+        <option value="time">Tiempo</option>
+        <option value="mass">Masa</option>
+      </select>
+    </div>
 
-        function convertirMagnitud(valor, unidad_origen, unidad_destino) {
-            if (unidad_origen === "C" && unidad_destino === "F") {
-                return (valor * 9 / 5) + 32;
-            } else if (unidad_origen === "F" && unidad_destino === "C") {
-                return (valor - 32) * 5 / 9;
-            } else if (unidad_origen === "C" && unidad_destino === "K") {
-                return valor + 273.15;
-            } else if (unidad_origen === "K" && unidad_destino === "C") {
-                return valor - 273.15;
-            } else if (unidad_origen === "F" && unidad_destino === "K") {
-                var celsius = (valor - 32) * 5 / 9;
-                return celsius + 273.15;
-            } else if (unidad_origen === "K" && unidad_destino === "F") {
-                var celsius = (valor - 273.15) * 9 / 5;
-                return celsius + 32;
-            } else if (unidad_origen === "m" && unidad_destino === "cm") {
-                return valor * 100;
-            } else if (unidad_origen === "cm" && unidad_destino === "m") {
-                return valor / 100;
-            } else if (unidad_origen === "m" && unidad_destino === "km") {
-                return valor / 1000;
-            } else if (unidad_origen === "km" && unidad_destino === "m") {
-                return valor * 1000;
-            } else if (unidad_origen === "g" && unidad_destino === "kg") {
-                return valor / 1000;
-            } else if (unidad_origen === "kg" && unidad_destino === "g") {
-                return valor * 1000;
-            } else if (unidad_origen === "lb" && unidad_destino === "kg") {
-                return valor * 0.453592;
-            } else if (unidad_origen === "kg" && unidad_destino === "lb") {
-                return valor / 0.453592;
-            } else if (unidad_origen === "s" && unidad_destino === "min") {
-                return valor / 60;
-            } else if (unidad_origen === "min" && unidad_destino === "s") {
-                return valor * 60;
-            } else if (unidad_origen === "s" && unidad_destino === "h") {
-                return valor / 3600;
-            } else if (unidad_origen === "h" && unidad_destino === "s") {
-                return valor * 3600;
-            } else {
-                return valor;  // Las unidades son las mismas, no se realiza ninguna conversión
-            }
-        }
-    </script>
+    <div class="input-container">
+      <label>Unidad de destino:</label>
+      <select id="toUnit"></select>
+    </div>
+
+    <button onclick="convert()">Convertir</button>
+
+    <div id="result"></div>
+  </div>
+
+  <script>
+    const units = {
+      length: {
+        meter: 'Metro (m)',
+        centimeter: 'Centimetro (cm)',
+        kilometer: 'Kilometro (km)',
+      },
+      time: {
+        second: 'Segundo (s)',
+        minute: 'Minuto (min)',
+        hour: 'Hora (h)',
+      },
+      mass: {
+        kilogram: 'Kilogramo (kg)',
+        gram: 'Gramo (g)',
+        ton: 'Tonelada (t)',
+      },
+    };
+
+    function fillUnitOptions() {
+      const fromMagnitude = document.getElementById('fromMagnitude').value;
+      const toMagnitude = document.getElementById('toMagnitude').value;
+      const fromUnitSelect = document.getElementById('fromUnit');
+      const toUnitSelect = document.getElementById('toUnit');
+
+      fromUnitSelect.innerHTML = '';
+      toUnitSelect.innerHTML = '';
+
+      for (const unit in units[fromMagnitude]) {
+        const option1 = document.createElement('option');
+        option1.value = unit;
+        option1.innerText = units[fromMagnitude][unit];
+        fromUnitSelect.appendChild(option1);
+      }
+
+      for (const unit in units[toMagnitude]) {
+        const option2 = document.createElement('option');
+        option2.value = unit;
+        option2.innerText = units[toMagnitude][unit];
+        toUnitSelect.appendChild(option2);
+      }
+    }
+
+    function convert() {
+      const value = parseFloat(document.getElementById('value').value);
+      const fromUnit = document.getElementById('fromUnit').value;
+      const toUnit = document.getElementById('toUnit').value;
+      const fromMagnitude = document.getElementById('fromMagnitude').value;
+      const toMagnitude = document.getElementById('toMagnitude').value;
+      let result;
+
+      if (fromMagnitude === toMagnitude) {
+        result = value * getRatio(fromMagnitude, fromUnit, toUnit);
+      } else {
+        const commonUnit = 'meter';
+        const commonValue = value * getRatio(fromMagnitude, fromUnit, commonUnit);
+        result = commonValue / getRatio(toMagnitude, commonUnit, toUnit);
+      }
+
+      document.getElementById('result').innerText = `${value} ${units[fromMagnitude][fromUnit]} son ${result.toFixed(2)} ${units[toMagnitude][toUnit]}`;
+    }
+
+    function getRatio(magnitude, fromUnit, toUnit) {
+      const ratios = {
+        length: {
+          meter: 1,
+          centimeter: 0.01,
+          kilometer: 1000,
+        },
+        time: {
+          second: 1,
+          minute: 60,
+          hour: 3600,
+        },
+        mass: {
+          kilogram: 1,
+          gram: 0.001,
+          ton: 1000,
+        },
+      };
+
+      return ratios[magnitude][fromUnit] / ratios[magnitude][toUnit];
+    }
+
+    document.getElementById('fromMagnitude').addEventListener('change', fillUnitOptions);
+    document.getElementById('toMagnitude').addEventListener('change', fillUnitOptions);
+
+    fillUnitOptions(); // Fill initial unit options
+  </script>
 </body>
 </html>
-
-
-
-
-
-
-
-
