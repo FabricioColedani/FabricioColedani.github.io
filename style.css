@@ -1,0 +1,210 @@
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f0f0f0;
+  color: #333;
+  margin: 0;
+  padding: 0;
+}
+
+/* Encabezado mejorado */
+header {
+  background-color: #333;
+  color: #fff;
+  text-align: center;
+  padding: 30px 0;
+  border-bottom: 2px solid #fff;
+}
+
+h1 {
+  font-size: 36px;
+  margin-bottom: 10px;
+  font-weight: bold;
+}
+
+h2 {
+  font-size: 24px;
+  font-weight: normal;
+  margin-top: 0;
+}
+
+.subtitle {
+  font-style: italic;
+  font-size: 18px;
+}
+
+/* Botón de descarga */
+.download-button {
+  background-color: #0073e6;
+  color: #fff;
+  padding: 10px 20px;
+  text-decoration: none;
+  border-radius: 5px;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+}
+
+.download-button:hover {
+  background-color: #005baa;
+}
+
+/* Mapa en la sección de información de contacto */
+.map-container {
+    width: 100%;
+    max-width: 400px; /* Ajusta el ancho del mapa según tus preferencias */
+    margin-right: 20px;
+    float: right;
+}
+
+/* Pie de página mejorado */
+footer {
+  text-align: center;
+  padding: 20px 0;
+  background-color: #333;
+  color: #fff;
+  font-size: 14px;
+}
+
+/* Estilo al pasar el cursor sobre el enlace */
+footer a:hover {
+  text-decoration: underline;
+}
+
+/* Sección de información de contacto */
+.contact-info {
+  background-color: #fff;
+  padding: 20px;
+  margin: 20px;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.contact-info ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.contact-info li {
+  margin: 10px 0;
+}
+
+/* Sección de experiencia laboral */
+.experience {
+  background-color: #fff;
+  padding: 20px;
+  margin: 20px;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.experience p strong {
+  font-weight: bold;
+}
+
+/* Sección de educación */
+.education {
+  background-color: #fff;
+  padding: 20px;
+  margin: 20px;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.education strong {
+  font-weight: bold;
+}
+
+.education em {
+  font-style: italic;
+}
+
+/* Sección de habilidades */
+.skills {
+  background-color: #fff;
+  padding: 20px;
+  margin: 20px;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Sección de idiomas */
+.languages {
+  background-color: #fff;
+  padding: 20px;
+  margin: 20px;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Sección de intereses */
+.interests {
+  background-color: #fff;
+  padding: 20px;
+  margin: 20px;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Pie de página */
+footer {
+  text-align: center;
+  padding: 10px 0;
+  background-color: #333;
+  color: #fff;
+}
+
+.contact-info, .experience, .education, .skills, .languages, .interests {
+  background-color: #f9f9f9;
+  padding: 20px;
+  margin: 20px;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.section-divider {
+  border-top: 1px solid #ccc;
+  margin: 20px 0;
+}
+
+.social-links {
+  margin-top: 10px;
+}
+
+.social-links a {
+  color: #fff;
+  text-decoration: none;
+  margin: 0 20px; /* Aumentar el margen entre los íconos */
+  font-size: 32px; /* Tamaño de los íconos agrandado */
+}
+
+.social-links a:hover {
+  text-decoration: underline;
+}
+
+nav {
+  background-color: #333;
+  color: #fff;
+  text-align: center;
+  padding: 10px 0;
+}
+
+nav ul {
+  list-style: none;
+  padding: 0;
+}
+
+nav li {
+  display: inline;
+  margin-right: 20px;
+}
+
+nav a {
+  text-decoration: none;
+  color: #fff;
+  font-weight: bold;
+}
+
+nav a:hover {
+  text-decoration: underline;
+}
+
+/* Resto de los estilos permanece igual */
