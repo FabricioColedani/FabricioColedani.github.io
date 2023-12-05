@@ -1,6 +1,6 @@
 body {
   font-family: Arial, sans-serif;
-  background-color: #f0f0f0;
+  background-color: #212121;
   color: #333;
   margin: 0;
   padding: 0;
@@ -8,7 +8,7 @@ body {
 
 /* Encabezado mejorado */
 header {
-  background-color: #333;
+  background-color: #282828;
   color: #fff;
   text-align: center;
   padding: 30px 0;
@@ -59,8 +59,8 @@ h2 {
 footer {
   text-align: center;
   padding: 20px 0;
-  background-color: #333;
-  color: #fff;
+  background-color: #282828;
+  color: #10122f;
   font-size: 14px;
 }
 
