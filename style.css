@@ -1,47 +1,56 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
 
-body {
-    font-family: Arial, sans-serif;
+body, html {
     margin: 0;
     padding: 0;
-    background-color: #b8f4d5;
-    color: #8a2be2;
+    width: 100%;
+    height: 100%;
+    font-family: "Roboto", sans-serif;
+    font-weight: 100;
+    font-style: normal;
 }
-
+.background {
+    background-image: url('portada.jpg');
+    background-size: cover;
+    background-position: center;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+}
 header {
-
-}
-
-.container {
-    max-width: 1200px;
-    margin: 0 auto;
+    width: 100%;
     padding: 20px;
-}
-
-.section {
-    margin-bottom: 40px;
-}
-
-.section-title {
-    font-size: 24px;
-    font-weight: bold;
-    margin-bottom: 10px;
-}
-
-.sport-list {
-    list-style: none;
-    padding: 0;
-}
-
-.sport-list li {
-    margin-bottom: 10px;
-}
-
-footer {
-    background-color: #8a2be2;
-    color: #fff;
-    padding: 20px;
+    background: rgba(0, 0, 0, 0.5); 
+    color: white;
     text-align: center;
     position: fixed;
-    width: 100%;
-    bottom: 0;
+    top: 0;
+    left: 0;
+    z-index: 1;
+}
+.title {
+    color: white;
+    text-align: center;
+    font-size: 200px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+
+}
+
+.containerheader {
+    display: flex;
+    flex: row;
+    color: white;
+    text-decoration: none;
+    
+}
+
+.containerheader a {
+    margin: 10px;
 }
