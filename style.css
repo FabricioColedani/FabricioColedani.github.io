@@ -8,6 +8,7 @@ body, html {
     font-family: "Roboto", sans-serif;
     font-weight: 100;
     font-style: normal;
+    overflow-y: scroll;
     scroll-behavior: smooth;
 }
 
@@ -18,6 +19,26 @@ body, html {
     overflow: hidden;
 }
 
+.flecha {
+  transform:scale(0.1);
+  margin-top: 180px;
+  animation-duration: 1s;
+  animation-name: slidein;
+  filter: drop-shadow(  0px 100px 80px#000000);
+}
+
+@keyframes slidein {
+  from {
+    margin-top: 100%;
+
+  }
+
+  to {
+    margin-top: 180px;
+
+  }
+}
+
 .entresection {
     width: 100%;
     padding-top: 70px;
@@ -25,11 +46,12 @@ body, html {
     box-shadow:0 0 20px rgba(0, 0, 0, 0.7);
 }
 
+
 .background {
-    background-image: url('portada.png');
+    background-image: url('img/portadaa.png');
     background-size: cover;
     background-position: center;
-    background-attachment: fixed; /* Cambiado a fixed */
+    background-attachment: fixed; 
     width: 100%;
     height: 100%;
     position: absolute;
@@ -72,7 +94,7 @@ header {
 }
 
 .containerheader a:hover {
-    color: #FFD700; /* Un color amarillo dorado para el hover */
+    color: #FFD700;
 }
 
 .title {
@@ -94,17 +116,20 @@ header {
     align-items: center;
     flex-direction: column;
     position: relative; /* Añadido */
+    
 }
+
 
 /*Scroll*/
 
 ::-webkit-scrollbar {
     width: 10px; /* Ancho de la barra de desplazamiento */
+    
 }
 
 /* Estilo del riel de la barra de desplazamiento */
 ::-webkit-scrollbar-track {
-    background-color: #f1f1f11f; /* Color de fondo del riel */
+    background-color: #0e0a0ade; /* Color de fondo del riel */
 }
 
 /* Estilo del pulgar de la barra de desplazamiento */
@@ -133,7 +158,8 @@ header {
   padding: 30px 10px;
   font-family: 'DM Sans', sans-serif;
   transition: background .4s ease-in;
-  background: linear-gradient(to bottom right, rgba(165, 227, 235, 0.5), rgb(245, 100, 221));
+  background: linear-gradient(to bottom right, rgb(0, 0, 0), rgb(16 33 35));
+  
   
   &.blue {
     background-color: #428aa6;
@@ -320,4 +346,9 @@ img {
 
 #scrollButton:hover {
     background-color: #2992dc;
+}
+
+.container {
+  transform:scale(0.8)
+  
 }
