@@ -230,6 +230,7 @@ img {
   object-fit: cover;
 }
 
+
 #item-1:checked ~ .cards #song-3, #item-2:checked ~ .cards #song-1, #item-3:checked ~ .cards #song-2 {
   transform: translatex(-40%) scale(.8);
   opacity: .4;
