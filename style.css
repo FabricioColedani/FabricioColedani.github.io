@@ -340,6 +340,19 @@ img {
     margin-right: 20px;
 }
 
+.button_slide {
+  cursor: pointer;
+  box-shadow: inset 0 0 0 0 #D80286;
+  -webkit-transition: ease-out 0.4s;
+  -moz-transition: ease-out 0.4s;
+  transition: ease-out 0.4s;
+}
+
+.slide_down:hover {
+  box-shadow: inset 0 100px 0 0 #D80286;
+}
+
+
 h2 {
   font-family: "Roboto", sans-serif;
   font-weight: 100;
