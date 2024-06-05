@@ -314,7 +314,7 @@ img {
 }
 
 #item-2:checked ~ .selector #test  {
-  transform: translateY(-60px);
+  transform: translateY(-51px);
 }
 
 #item-3:checked ~ .selector #test  {
@@ -337,11 +337,19 @@ img {
     text-align: center;
     font-size: 20px;
     margin-bottom: 20px;
-    text-decoration: none;
     margin-right: 20px;
-    font-family: "Roboto", sans-serif;
-    font-weight: 100;
-    font-style: normal;
+}
+
+h2 {
+  font-family: "Roboto", sans-serif;
+  font-weight: 100;
+  font-style: normal;   
+  font-weight: 400; 
+  text-decoration: none;
+}
+
+a {
+  text-decoration: none;
 }
 
 #scrollButton {
