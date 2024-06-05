@@ -261,7 +261,17 @@ img {
   align-items: center;
   align-content: center;
   justify-content: center;
+  transition: background 0.2s ease;
 }
+
+.selector:hover {
+  background-color: rgb(5, 5, 5);
+}
+
+.selector:hover h2 {
+  color: rgb(255, 255, 255);
+}
+
 
 .upper-part {
   position: relative;
