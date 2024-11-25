@@ -1,0 +1,63 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+    color: #333;
+}
+header {
+    background: #333;
+    color: #fff;
+    padding: 10px 0;
+}
+.containerheader {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+.containerheader a {
+    color: #fff;
+    text-decoration: none;
+}
+main {
+    padding: 20px;
+}
+h1 {
+    text-align: center;
+    color: #222;
+}
+.deportes-container {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 20px;
+}
+.deporte {
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+.deporte h2 {
+    margin-top: 0;
+}
+button {
+    background: #333;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+button:hover {
+    background: #555;
+}
+.video-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+iframe {
+    width: 100%;
+    max-width: 560px;
+    height: 315px;
+}
